@@ -25,7 +25,7 @@ services:
       traefik.http.services.adguard.loadbalancer.server.port: 80
 
   hera:
-    image: contagon/hera
+    image: contagon/hera:latest
     container_name: hera
     restart: unless-stopped
     networks:
