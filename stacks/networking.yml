@@ -35,6 +35,19 @@ services:
       - ${FAST}/hera/logs:/var/log/hera
       - /var/run/docker.sock:/var/run/docker.sock
 
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy:2.3.5
+    container_name: caddy
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${FAST}/caddy:/data
+    networks:
+      hera0:
+    labels:
+      hera.hostname: wh.${DOMAIN}
+      hera.port: 80
+
 networks:
   traefik0:
     external: true
