@@ -32,6 +32,7 @@ services:
       RWA_ENV: "TRUE"
       RWA_USERNAME: "krosf"
       RWA_PASSWORD: "${RCON_PASSWORD}"
+      RWA_RCON_PASSWORD: "${RCON_PASSWORD}"
       RWA_ADMIN: "TRUE"
       RWA_RCON_HOST: "minecraft"
       RWA_WEB_RCON: "TRUE"
