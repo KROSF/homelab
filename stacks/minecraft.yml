@@ -13,6 +13,7 @@ services:
       EULA: "true"
       TYPE: FABRIC
       VERSION: "1.17.1"
+      FABRIC_INSTALLER_VERSION: "0.7.3"
       ENABLE_RCON: "true"
       RCON_PASSWORD: "${RCON_PASSWORD}"
       MEMORY: 8G
