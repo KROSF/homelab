@@ -16,7 +16,6 @@ services:
       ENABLE_RCON: "true"
       RCON_PASSWORD: "${RCON_PASSWORD}"
       MEMORY: 8G
-      RCON_PORT: 28016
       OVERRIDE_SERVER_PROPERTIES: "true"
     ports:
       - 25565:25565
@@ -35,7 +34,6 @@ services:
       RWA_PASSWORD: "${RCON_PASSWORD}"
       RWA_ADMIN: "TRUE"
       RWA_RCON_HOST: "minecraft"
-      RWA_RCON_PORT: "28016"
       RWA_WEB_RCON: "TRUE"
       RWA_WEBSCOCKET_URL: "wss://rcon.${DOMAIN}/ws"
       RWA_WEBSOCKET_URL_SSL: "wss://rcon.${DOMAIN}/ws"
@@ -62,7 +60,6 @@ services:
     environment:
       BACKUP_INTERVAL: "24h"
       RCON_HOST: minecraft
-      RCON_PORT: 28016
       RCON_PASSWORD: "${RCON_PASSWORD}"
       PRUNE_BACKUPS_DAYS: 7
     volumes:
