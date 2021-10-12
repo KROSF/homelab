@@ -19,7 +19,6 @@ services:
       MEMORY: 8G
       RCON_PORT: 28016
       OVERRIDE_SERVER_PROPERTIES: "true"
-      LEVEL_TYPE: "island"
     networks:
       - traefik0
     ports:
