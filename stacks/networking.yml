@@ -17,7 +17,7 @@ services:
       - 1.1.1.1
       - 8.8.8.8
     volumes:
-      - ${SSD}/configs/adguardhome:/opt/adguardhome/conf
+      - ${FAST}/configs/adguardhome:/opt/adguardhome/conf
       - ${STORAGE}/adguardhome:/opt/adguardhome/work
     labels:
       traefik.enable: "true"
