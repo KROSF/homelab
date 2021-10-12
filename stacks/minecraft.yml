@@ -27,34 +27,34 @@ services:
       - ${FAST}/minecraft/config:/config
       - ${FAST}/minecraft/mods:/mods:ro
 
-  rcon:
-    image: itzg/rcon
-    container_name: rcon
-    restart: unless-stopped
-    network_mode: "service:minecraft"
-    environment:
-      RWA_ENV: "TRUE"
-      RWA_USERNAME: "krosf"
-      RWA_PASSWORD: "${RCON_PASSWORD}"
-      RWA_RCON_PASSWORD: "${RCON_PASSWORD}"
-      RWA_ADMIN: "TRUE"
-      RWA_RCON_HOST: "localhost"
-      RWA_RCON_PORT: "28016"
-      RWA_WEB_RCON: "TRUE"
-      RWA_WEBSCOCKET_URL: "wss://rcon.${DOMAIN}/ws"
-      RWA_WEBSOCKET_URL_SSL: "wss://rcon.${DOMAIN}/ws"
-    volumes:
-      - ${STORAGE}/minecraft/rcon:/opt/rcon-web-admin/db
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.rcon-ui-https.service: rcon-ui
-      traefik.http.routers.rcon-ui-https.entrypoints: websecure
-      traefik.http.routers.rcon-ui-https.rule: Host(`rcon.${DOMAIN}`)
-      traefik.http.services.rcon-ui.loadbalancer.server.port: "4326"
-      traefik.http.services.rcon-websocket.loadbalancer.server.port: "4327"
-      traefik.http.routers.rcon-websocket-https.service: rcon-websocket
-      traefik.http.routers.rcon-websocket-https.entrypoints: websecure
-      traefik.http.routers.rcon-websocket-https.rule: Host(`rcon.${DOMAIN}`) && Path(`/ws`)
+  # rcon:
+  #   image: itzg/rcon
+  #   container_name: rcon
+  #   restart: unless-stopped
+  #   network_mode: "service:minecraft"
+  #   environment:
+  #     RWA_ENV: "TRUE"
+  #     RWA_USERNAME: "krosf"
+  #     RWA_PASSWORD: "${RCON_PASSWORD}"
+  #     RWA_RCON_PASSWORD: "${RCON_PASSWORD}"
+  #     RWA_ADMIN: "TRUE"
+  #     RWA_RCON_HOST: "localhost"
+  #     RWA_RCON_PORT: "28016"
+  #     RWA_WEB_RCON: "TRUE"
+  #     RWA_WEBSCOCKET_URL: "wss://rcon.${DOMAIN}/ws"
+  #     RWA_WEBSOCKET_URL_SSL: "wss://rcon.${DOMAIN}/ws"
+  #   volumes:
+  #     - ${STORAGE}/minecraft/rcon:/opt/rcon-web-admin/db
+  #   labels:
+  #     traefik.enable: "true"
+  #     traefik.http.routers.rcon-ui-https.service: rcon-ui
+  #     traefik.http.routers.rcon-ui-https.entrypoints: websecure
+  #     traefik.http.routers.rcon-ui-https.rule: Host(`rcon.${DOMAIN}`)
+  #     traefik.http.services.rcon-ui.loadbalancer.server.port: "4326"
+  #     traefik.http.services.rcon-websocket.loadbalancer.server.port: "4327"
+  #     traefik.http.routers.rcon-websocket-https.service: rcon-websocket
+  #     traefik.http.routers.rcon-websocket-https.entrypoints: websecure
+  #     traefik.http.routers.rcon-websocket-https.rule: Host(`rcon.${DOMAIN}`) && Path(`/ws`)
 
   mc-bak:
     image: itzg/mc-backup
