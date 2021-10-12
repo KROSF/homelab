@@ -39,9 +39,12 @@ services:
     image: lucaslorentz/caddy-docker-proxy:2.3.5
     container_name: caddy
     restart: unless-stopped
+    enviroment:
+      CADDY_DOCKER_CADDYFILE_PATH: /etc/caddy/Caddyfile
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${FAST}/caddy:/data
+      - ${FAST}/configs/caddy:/etc/caddy
     networks:
       hera0:
     labels:
