@@ -30,15 +30,15 @@ services:
     container_name: rcon
     restart: unless-stopped
     environment:
-      RWA_ENV: "true"
+      RWA_ENV: "TRUE"
       RWA_USERNAME: "krosf"
       RWA_PASSWORD: "${RCON_PASSWORD}"
-      RWA_ADMIN: "true"
+      RWA_ADMIN: "TRUE"
       RWA_RCON_HOST: "minecraft"
       RWA_RCON_PORT: "28016"
-      RWA_WEB_RCON: "true"
-      RWA_WEBSOCKET_URL_SSL: "wss://rcon.${DOMAIN}/ws"
+      RWA_WEB_RCON: "TRUE"
       RWA_WEBSCOCKET_URL: "wss://rcon.${DOMAIN}/ws"
+      RWA_WEBSOCKET_URL_SSL: "wss://rcon.${DOMAIN}/ws"
     networks:
       default:
       traefik0:
