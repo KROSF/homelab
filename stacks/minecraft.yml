@@ -25,6 +25,7 @@ services:
     volumes:
       - ${STORAGE}/minecraft/data:/data
       - ${FAST}/minecraft/config:/config
+      - ${FAST}/minecraft/kubejs:/data/kubejs
       - ${FAST}/minecraft/mods:/mods:ro
 
   # rcon:
