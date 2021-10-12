@@ -22,8 +22,8 @@ services:
       - 25565:25565
     volumes:
       - ${STORAGE}/minecraft/data:/data
-      - ${STORAGE}/minecraft/config:/config
-      - ${STORAGE}/minecraft/mods:/mods:ro
+      - ${FAST}/minecraft/config:/config
+      - ${FAST}/minecraft/mods:/mods:ro
 
   rcon:
     image: itzg/rcon
