@@ -38,7 +38,7 @@ services:
       RWA_PASSWORD: "${RCON_PASSWORD}"
       RWA_RCON_PASSWORD: "${RCON_PASSWORD}"
       RWA_ADMIN: "TRUE"
-      RWA_RCON_HOST: "minecraft"
+      RWA_RCON_HOST: "localhost"
       RWA_RCON_PORT: "28016"
       RWA_WEB_RCON: "TRUE"
       RWA_WEBSCOCKET_URL: "wss://rcon.${DOMAIN}/ws"
@@ -63,7 +63,7 @@ services:
     network_mode: "service:minecraft"
     environment:
       BACKUP_INTERVAL: "24h"
-      RCON_HOST: minecraft
+      RCON_HOST: "localhost"
       RCON_PORT: 28016
       RCON_PASSWORD: "${RCON_PASSWORD}"
       PRUNE_BACKUPS_DAYS: 7
