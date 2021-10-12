@@ -1,0 +1,70 @@
+version: "3.7"
+
+networks:
+  traefik0:
+    external: true
+
+services:
+  minecraft:
+    image: itzg/minecraft-server:java16
+    container_name: minecraft
+    restart: unless-stopped
+    environment:
+      EULA: "true"
+      TYPE: FABRIC
+      VERSION: "1.17.1"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "${RCON_PASSWORD}"
+      MEMORY: 8G
+      RCON_PORT: 28016
+      OVERRIDE_SERVER_PROPERTIES: "true"
+    ports:
+      - 25565:25565
+    volumes:
+      - ${STORAGE}/minecraft/data:/data
+      - ${STORAGE}/minecraft/config:/config
+      - ${STORAGE}/minecraft/mods:/mods:ro
+
+  rcon:
+    image: itzg/rcon
+    container_name: rcon
+    restart: unless-stopped
+    environment:
+      RWA_ENV: "true"
+      RWA_USERNAME: "krosf"
+      RWA_PASSWORD: "${RCON_PASSWORD}"
+      RWA_ADMIN: "true"
+      RWA_RCON_HOST: "minecraft"
+      RWA_RCON_PORT: "28016"
+      RWA_WEB_RCON: "true"
+      RWA_WEBSOCKET_URL_SSL: "wss://rcon.${DOMAIN}/ws"
+      RWA_WEBSCOCKET_URL: "wss://rcon.${DOMAIN}/ws"
+    networks:
+      default:
+      traefik0:
+    volumes:
+      - ${STORAGE}/minecraft/rcon:/opt/rcon-web-admin/db
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.rcon-ui-https.service: rcon-ui
+      traefik.http.routers.rcon-ui-https.entrypoints: websecure
+      traefik.http.routers.rcon-ui-https.rule: Host(`rcon.${DOMAIN}`)
+      traefik.http.services.rcon-ui.loadbalancer.server.port: "4326"
+      traefik.http.services.rcon-websocket.loadbalancer.server.port: "4327"
+      traefik.http.routers.rcon-websocket-https.service: rcon-websocket
+      traefik.http.routers.rcon-websocket-https.entrypoints: websecure
+      traefik.http.routers.rcon-websocket-https.rule: Host(`rcon.${DOMAIN}`) && Path(`/ws`)
+
+  mc-bak:
+    image: itzg/mc-backup
+    container_name: mc-bak
+    restart: unless-stopped
+    environment:
+      BACKUP_INTERVAL: "24h"
+      RCON_HOST: minecraft
+      RCON_PORT: 28016
+      RCON_PASSWORD: "${RCON_PASSWORD}"
+      PRUNE_BACKUPS_DAYS: 7
+    volumes:
+      - ${STORAGE}/minecraft/data:/data:ro
+      - ${STORAGE}/minecraft/backups:/backups
