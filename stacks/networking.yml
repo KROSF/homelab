@@ -54,7 +54,8 @@ services:
       - wh.${DOMAIN}
       - --url
       - http://nginx-proxy:8080
-      - --http-host-header wh.${DOMAIN}
+      - --http-host-header
+      - wh.${DOMAIN}
     networks:
       traefik0:
     volumes:
