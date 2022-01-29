@@ -58,6 +58,7 @@ services:
       - wh.${DOMAIN}
       - --name
       - wh
+      - --overwrite-dns
     networks:
       traefik0:
     volumes:
