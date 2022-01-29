@@ -66,5 +66,3 @@ services:
 networks:
   traefik0:
     external: true
-  hera0:
-    external: true
