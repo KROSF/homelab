@@ -53,7 +53,7 @@ services:
       - --hostname
       - wh.${DOMAIN}
       - --url
-      - http://nginx-proxy:8080
+      - http://nginx-proxy:80
       - --http-host-header
       - wh.${DOMAIN}
       - --name
