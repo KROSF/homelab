@@ -36,7 +36,7 @@ services:
   
   gateway:
     image: jwilder/whoami
-    container_name: nginx-proxy
+    container_name: gateway
     restart: unless-stopped
     networks:
       traefik0:
