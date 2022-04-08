@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   adguard:
-    image: adguard/adguardhome:v0.106.3
+    image: adguard/adguardhome:v0.107.5
     container_name: dns
     healthcheck:
       test: nslookup example.org 127.0.0.1 || exit 1
