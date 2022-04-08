@@ -1,0 +1,19 @@
+version: "3.7"
+
+networks:
+  traefik0:
+    external: true
+
+services:
+  verdaccio:
+    image: verdaccio/verdaccio:5.8
+    container_name: verdaccio
+    restart: unless-stopped
+    networks:
+      - traefik0
+    volumes:
+      - ${STORAGE}/verdaccio:/verdaccio/storage
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.verdaccio.entrypoints: websecure
+      traefik.http.services.verdaccio.loadbalancer.server.port: 4873
